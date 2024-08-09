@@ -1,7 +1,12 @@
 Class {
 	#name : 'Guu',
-	#superclass : 'JankenHand',
+	#superclass : 'Janken',
 	#category : 'JankenHands-Core',
 	#package : 'JankenHands',
 	#tag : 'Core'
 }
+
+{ #category : 'comparing' }
+Guu class >> greaterHand [
+	^ Paa
+]

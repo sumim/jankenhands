@@ -1,5 +1,5 @@
 Class {
-	#name : 'JankenHandTest',
+	#name : 'JankenTest',
 	#superclass : 'TestCase',
 	#category : 'JankenHands-Tests',
 	#package : 'JankenHands',
@@ -7,7 +7,7 @@ Class {
 }
 
 { #category : 'tests' }
-JankenHandTest >> test01weakerThan [
+JankenTest >> test01weakerThan [
 	self should: Guu < Paa.
 	self shouldnt: Guu < Choki.
 	self should: Paa < Choki.
@@ -17,7 +17,7 @@ JankenHandTest >> test01weakerThan [
 ]
 
 { #category : 'tests' }
-JankenHandTest >> test02greaterThan [
+JankenTest >> test02greaterThan [
 	self shouldnt: Guu > Paa.
 	self should: Guu > Choki.
 	self shouldnt: Paa > Choki.

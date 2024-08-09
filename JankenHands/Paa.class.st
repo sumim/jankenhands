@@ -1,7 +1,12 @@
 Class {
 	#name : 'Paa',
-	#superclass : 'JankenHand',
+	#superclass : 'Janken',
 	#category : 'JankenHands-Core',
 	#package : 'JankenHands',
 	#tag : 'Core'
 }
+
+{ #category : 'comparing' }
+Paa class >> greaterHand [
+	^ Choki
+]

@@ -1,45 +1,43 @@
 Class {
-	#name : 'JankenHand',
+	#name : 'Janken',
 	#superclass : 'Object',
-	#classInstVars : [
-		'greaterHand'
-	],
 	#category : 'JankenHands-Core',
 	#package : 'JankenHands',
 	#tag : 'Core'
 }
 
 { #category : 'comparing' }
-JankenHand class >> < other [
-	^ (other isKindOf: self class superclass) and: [ self ~~ other and: [ greaterHand == other ] ]
+Janken class >> < other [
+	^ self greaterHand == other
 ]
 
 { #category : 'comparing' }
-JankenHand class >> > other [
+Janken class >> > other [
 	^ self ~~ other and: [ (self < other) not ]
 ]
 
 { #category : 'examples' }
-JankenHand class >> NPlayersV1: N [ "JankenHand NPlayersV1: 10"
-	| roundCount playerHands handAndCounts greaterHand winner |
-	JankenHand openTranscript.
+Janken class >> NPlayersV1: N [ "Janken NPlayersV1: 10"
+	| roundCount playerHands handAndCounts winnewtHand winner |
+	Janken openTranscript.
 	roundCount := 0.
 	[	roundCount := roundCount + 1.
-		playerHands := (1 to: N) collect: [ :n | n -> JankenHand Pon ].
+		playerHands := (1 to: N) collect: [ :n | n -> Janken Pon ].
 		Transcript cr; show: 'Hands: '; show: playerHands.
 		handAndCounts := (playerHands collect: #value) asBag sortedElements.
 		handAndCounts size = 2 and: [ handAndCounts last value = 1 ]
 	] whileFalse.
-	greaterHand := handAndCounts last key.
-	winner := playerHands detect: [ :p | p value = greaterHand ].
+	winnewtHand := handAndCounts last key.
+	winner := playerHands detect: [ :p | p value = winnewtHand ].
 	Transcript cr; 
 		show: 'Round: ', roundCount printString;
 		show: ', Win: ', winner key printString.
 ]
 
 { #category : 'examples' }
-JankenHand class >> NPlayersV2: N [ "JankenHand NPlayersV2: 10"
+Janken class >> NPlayersV2: N [ "Janken NPlayersV2: 10"
 	| roundCount playerNums playerHands sortedElements nextHands |
+	Janken openTranscript.
 	playerNums := 1 to: 10.
 	roundCount := 0.
 	[roundCount := roundCount + 1.
@@ -60,36 +58,29 @@ JankenHand class >> NPlayersV2: N [ "JankenHand NPlayersV2: 10"
 ]
 
 { #category : 'random' }
-JankenHand class >> Pon [
-	^ JankenHand subclasses atRandom
+Janken class >> Pon [
+	^ Janken subclasses atRandom
 ]
 
-{ #category : 'private' }
-JankenHand class >> beWeakerThan: newGreaterHand [
-	greaterHand := newGreaterHand 
-]
-
-{ #category : 'class initialization' }
-JankenHand class >> initialize [ "JankenHand initialize"
-	Choki beWeakerThan: Guu.
-	Guu beWeakerThan: Paa.
-	Paa beWeakerThan: Choki
+{ #category : 'comparing' }
+Janken class >> greaterHand [
+	self subclassResponsibility 
 ]
 
 { #category : 'examples' }
-JankenHand class >> openTranscript [
+Janken class >> openTranscript [
 	(World windowsSatisfying: [ :w | w model = Transcript ]) 
 		ifEmpty: [ Transcript open ] 
 		ifNotEmpty: [ :ws | ws first activate ].
 ]
 
 { #category : 'examples' }
-JankenHand class >> twoPlayers: N [ "JankenHand twoPlayers"
-	JankenHand openTranscript.
+Janken class >> twoPlayers: N [ "Janken twoPlayers: 3"
+	Janken openTranscript.
 	N timesRepeat: [
 		| player1 player2 result  |
-		Transcript cr; show: 'Player1: ', (player1 := JankenHand Pon) printString.
-		Transcript show: ' vs Player2: ', (player2 := JankenHand Pon) printString.
+		Transcript cr; show: 'Player1: ', (player1 := Janken Pon) printString.
+		Transcript show: ' vs Player2: ', (player2 := Janken Pon) printString.
 		result := player1 = player2 
 			ifTrue: [ 'Draw' ] 
 			ifFalse: [ player1 > player2 
